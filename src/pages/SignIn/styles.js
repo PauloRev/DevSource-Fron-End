@@ -86,3 +86,10 @@ export const Button = styled.button`
     transition: all ease 0.5s;
   }
 `;
+
+export const MessageError = styled.span`
+  color: #ff4040;
+  font-size: 14px;
+  margin-top: -15px;
+  margin-bottom: 10px;
+`;
