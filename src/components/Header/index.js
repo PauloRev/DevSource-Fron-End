@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 
 import theme from "../../styles/theme";
 
-import { MdAccountCircle, MdAddCircle, MdDashboard } from "react-icons/md";
+import {
+  MdAccountCircle,
+  MdAddCircle,
+  MdDashboard,
+  MdExitToApp
+} from "react-icons/md";
 
 import { Container, Logo, Menu } from "./styles";
 
 export default function Header() {
-  const [activeItem, setActiveItem] = useState("DASHBOARD");
+  const [activeItem, setActiveItem] = useState("");
 
   function isActiveMenu(item) {
     if (activeItem === item) {
@@ -16,9 +21,17 @@ export default function Header() {
     }
   }
 
+  function handleLogout() {
+    localStorage.clear();
+  }
+
   return (
     <Container>
-      <Logo>DevSource</Logo>
+      <Logo>
+        <Link to="/" onClick={() => setActiveItem("")}>
+          DevSource
+        </Link>
+      </Logo>
       <Menu>
         <ul>
           <li>
@@ -46,6 +59,11 @@ export default function Header() {
               onClick={() => setActiveItem("MY_PROFILE")}
             >
               <MdAccountCircle /> Meu perfil
+            </Link>
+          </li>
+          <li>
+            <Link to="/" onClick={handleLogout}>
+              <MdExitToApp /> Sair
             </Link>
           </li>
         </ul>

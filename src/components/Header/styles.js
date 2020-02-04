@@ -11,7 +11,16 @@ export const Container = styled.header`
   margin: 20px auto -70px auto;
 `;
 
-export const Logo = styled.h1``;
+export const Logo = styled.h1`
+  a {
+    color: #fff;
+
+    &:hover {
+      color: ${theme.colors.primary};
+      transition: all ease 0.5s;
+    }
+  }
+`;
 
 export const Menu = styled.nav`
   ul {

@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import api from "../../services/api";
+import history from "../../services/history";
+import axios from "axios";
 import { Container, Button, Input, MessageError } from "./styles";
 
 const FormSchema = Yup.object().shape({
@@ -15,6 +18,34 @@ const FormSchema = Yup.object().shape({
 });
 
 export default function SignUp() {
+  async function submitForm({ username, email, password }) {
+    const responseGit = axios
+      .get(`https://api.github.com/users/${username}`)
+      .then(
+        async function(responseGit) {
+          const response = await api
+            .post("/users", {
+              name: username,
+              email,
+              password
+            })
+            .then(
+              function(response) {
+                history.push("/sign-in");
+              },
+              function(reject) {
+                console.log("usuario ou email ja existe");
+                console.log(reject, " ERROR");
+              }
+            );
+        },
+        function(reject) {
+          console.log("usuario git n existe");
+          console.log(reject, " ERROR");
+        }
+      );
+  }
+
   return (
     <Container>
       <h1>DevSource</h1>
@@ -22,7 +53,7 @@ export default function SignUp() {
         initialValues={{ username: "", email: "", password: "" }}
         validationSchema={FormSchema}
         onSubmit={values => {
-          alert(`${values.username}, ${values.email}, ${values.password}`);
+          submitForm(values);
         }}
       >
         {({ handleChange, handleSubmit, errors }) => (

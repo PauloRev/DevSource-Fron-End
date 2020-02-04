@@ -6,7 +6,9 @@ export default function RouteWrapper({
   isPrivate = false,
   ...rest
 }) {
-  const signed = false;
+  const token = localStorage.getItem("@DevSource/token");
+
+  const signed = !token ? false : true;
 
   if (!signed && isPrivate) {
     return <Redirect to="/" />;
