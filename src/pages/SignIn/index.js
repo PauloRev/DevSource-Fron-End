@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import api from "../../services/api";
+import history from "../../services/history";
 import { Container, Button, Input, MessageError } from "./styles";
 
 const FormSchema = Yup.object().shape({
-  email: Yup.string().required("Informe seu e-mail!"),
+  email: Yup.string()
+    .email("Informe um e-mail válido!")
+    .required("Informe seu e-mail!"),
   password: Yup.string().required("Informe sua senha!")
 });
 
 export default function SignIn() {
+  async function submitForm({ email, password }) {
+    const response = await api.post("/sessions", {
+      email,
+      password
+    });
+    try {
+      const { token } = response.data;
+
+      localStorage.setItem("@DevSource/token", token);
+      history.push("/dashboard");
+    } catch (err) {
+      console.log(err, " ERROR");
+    }
+  }
+
   return (
     <Container>
       <h1>DevSource</h1>
@@ -17,7 +36,7 @@ export default function SignIn() {
         initialValues={{ email: "", password: "" }}
         validationSchema={FormSchema}
         onSubmit={values => {
-          alert(`${values.email}, ${values.password}`);
+          submitForm(values);
         }}
       >
         {({ handleChange, handleSubmit, errors }) => (
@@ -34,7 +53,9 @@ export default function SignIn() {
               onChange={handleChange("password")}
             />
             {errors.password && <MessageError>{errors.password}</MessageError>}
-            <Button onClick={handleSubmit}>Entrar</Button>
+            <Button type="submit" onClick={handleSubmit}>
+              Entrar
+            </Button>
           </>
         )}
       </Formik>

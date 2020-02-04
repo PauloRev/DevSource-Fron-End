@@ -10,8 +10,8 @@ export default function Home() {
         Compartilhar e conhecer o melhor que a comunidade <br /> Dev tem para
         você. Vamos lá!
       </p>
-      <Link to="/share-content">
-        <Button>Compartilhar</Button>
+      <Link to="/sign-in">
+        <Button>Entre e compartilhe</Button>
       </Link>
       <Link to="/dashboard">
         <a className="link">Conferir novidades</a>

@@ -31,7 +31,7 @@ export const Container = styled.section`
     &::after {
       content: "";
       width: 0;
-      height: 1px;
+      height: 2px;
       background: ${theme.colors.tertiary};
       display: block;
       margin: 5px auto;
