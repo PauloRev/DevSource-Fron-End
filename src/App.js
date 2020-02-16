@@ -4,19 +4,18 @@ import GlobalStyles from "./styles/global";
 
 import Routes from "./routes";
 import history from "./services/history";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 function App() {
-  const token = localStorage.getItem("@DevSource/token");
-
   return (
     <>
       <Router history={history}>
-        <Header isVisible={token ? true : false} />
         <Routes />
         <Footer />
+        <ToastContainer optionsToast autoClose={3000} />
         <GlobalStyles />
       </Router>
     </>

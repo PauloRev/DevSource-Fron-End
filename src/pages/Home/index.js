@@ -13,8 +13,8 @@ export default function Home() {
       <Link to="/sign-in">
         <Button>Entre e compartilhe</Button>
       </Link>
-      <Link to="/dashboard">
-        <a className="link">Conferir novidades</a>
+      <Link to="/sign-up">
+        <a className="link">Crie uma conta</a>
       </Link>
     </Container>
   );

@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import api from "../../services/api";
 import history from "../../services/history";
+import { toast } from "react-toastify";
 import { Container, Button, Input, MessageError } from "./styles";
 
 const FormSchema = Yup.object().shape({
@@ -21,7 +22,7 @@ export default function SignIn() {
     });
 
     if (response.data.error) {
-      alert("email ou senha inválidos!");
+      toast.error("email ou senha inválidos!");
       return false;
     }
 

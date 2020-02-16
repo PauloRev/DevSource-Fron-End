@@ -5,7 +5,8 @@ export const Container = styled.section`
   height: 500px;
   width: 80%;
   margin: 0 auto;
-  margin-top: 90px;
+  margin-top: 60px;
+  margin-bottom: 30px;
   padding: 30px 20px 10px 20px;
   background: ${theme.colors.primary};
   border: 3px solid ${theme.colors.secondary};
