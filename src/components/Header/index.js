@@ -12,8 +12,8 @@ import {
 
 import { Container, Logo, Menu } from "./styles";
 
-export default function Header() {
-  const [activeItem, setActiveItem] = useState("");
+export default function Header({ isActive }) {
+  const [activeItem, setActiveItem] = useState(isActive);
 
   function isActiveMenu(item) {
     if (activeItem === item) {
@@ -28,9 +28,7 @@ export default function Header() {
   return (
     <Container>
       <Logo>
-        <Link to="/" onClick={() => setActiveItem("")}>
-          DevSource
-        </Link>
+        <Link to="/">DevSource</Link>
       </Logo>
       <Menu>
         <ul>
@@ -38,17 +36,12 @@ export default function Header() {
             <Link
               to="/share-content"
               style={{ color: isActiveMenu("SHARED_CONTENT") }}
-              onClick={() => setActiveItem("SHARED_CONTENT")}
             >
               <MdAddCircle /> Compartilhar
             </Link>
           </li>
           <li>
-            <Link
-              to="/dashboard"
-              style={{ color: isActiveMenu("DASHBOARD") }}
-              onClick={() => setActiveItem("DASHBOARD")}
-            >
+            <Link to="/dashboard" style={{ color: isActiveMenu("DASHBOARD") }}>
               <MdDashboard /> Dashboard
             </Link>
           </li>
@@ -56,7 +49,6 @@ export default function Header() {
             <Link
               to="/my-profile"
               style={{ color: isActiveMenu("MY_PROFILE") }}
-              onClick={() => setActiveItem("MY_PROFILE")}
             >
               <MdAccountCircle /> Meu perfil
             </Link>

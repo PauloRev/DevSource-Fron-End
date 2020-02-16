@@ -17,55 +17,41 @@ export const Container = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+`;
 
-  h1 {
-    font-size: 90px;
-  }
+export const MenuCategories = styled.ul`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
 
-  p {
-    font-size: 30px;
-    text-align: center;
-    margin-top: 40px;
-  }
+export const MenuItem = styled.li`
+  margin: 0 10px;
+`;
 
-  a {
-    font-size: 20px;
-    color: ${theme.colors.secondary};
-    margin-top: 30px;
+export const LinkItem = styled.a`
+  font-size: 18px;
+  font-weight: bold;
 
-    &::after {
-      content: "";
-      width: 0;
-      height: 1px;
-      background: ${theme.colors.tertiary};
-      display: block;
-      margin: 5px auto;
-    }
-
-    &:hover::after {
-      width: 100%;
-      transition: all ease 0.5s;
-    }
-
-    &:hover {
-      color: ${theme.colors.tertiary};
-      transition: all ease 0.5s;
-    }
+  &:hover {
+    color: ${theme.colors.tertiary};
   }
 `;
 
-export const Button = styled.button`
+export const WelcomeText = styled.h2`
+  padding-top: 60px;
   font-size: 30px;
-  font-weight: bold;
-  color: #fff;
-  background: #173146;
-  border-radius: 5px;
-  padding: 20px 40px;
-  border: 2px solid ${theme.colors.secondary};
-  margin-top: 60px;
+  text-align: center;
 
-  &:hover {
-    background: ${theme.colors.secondary};
-    transition: all ease 0.5s;
+  span {
+    color: ${theme.colors.tertiary};
   }
+`;
+
+export const AreaCards = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
 `;
