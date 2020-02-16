@@ -19,6 +19,13 @@ export default function SignIn() {
       email,
       password
     });
+
+    if (response.data.error) {
+      alert("email ou senha inválidos!");
+      return false;
+    }
+
+    console.log(response);
     try {
       const { token } = response.data;
 
