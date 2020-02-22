@@ -18,14 +18,15 @@ const FormSchema = Yup.object().shape({
 });
 
 export default function SignUp() {
-  async function submitForm({ username, email, password }) {
+  async function submitForm({ name, username, email, password }) {
     const responseGit = axios
       .get(`https://api.github.com/users/${username}`)
       .then(
         async function(responseGit) {
           const response = await api
             .post("/users", {
-              name: username,
+              name,
+              githubUsername: username,
               email,
               password
             })
@@ -50,14 +51,18 @@ export default function SignUp() {
     <Container>
       <h1>DevSource</h1>
       <Formik
-        initialValues={{ username: "", email: "", password: "" }}
+        initialValues={{ name: "", username: "", email: "", password: "" }}
         validationSchema={FormSchema}
-        onSubmit={values => {
-          submitForm(values);
-        }}
+        onSubmit={values => submitForm(values)}
       >
         {({ handleChange, handleSubmit, errors }) => (
           <>
+            <Input
+              placeholder="Seu nome"
+              type="text"
+              onChange={handleChange("name")}
+            />
+            {errors.name && <MessageError>{errors.name}</MessageError>}
             <Input
               placeholder="Seu nome de usuário do Github"
               type="text"
